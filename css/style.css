@@ -9,7 +9,7 @@ h1 {
 }
 #canvas {
     height: 480px;
-    margin-left: 100px;
+    
     float: left;
     width: 640px;
 }
@@ -27,4 +27,33 @@ h1 {
 }
 #run {
     font-size: 2em;
+}
+.padding{
+    padding-left: 90px;
+}
+.menu {
+    width:100%;
+    float:left;
+    text-align:left;
+}
+
+.menu ul {
+    list-style:none;
+}
+
+.menu li {
+    float:left;
+    margin: 0 10px;
+}
+
+.menu a {
+    color:#0489B1;
+}
+
+.menu a:hover {
+    color:#086A87;
+}
+
+.menu a:visited {
+    color:#086A87;
 }

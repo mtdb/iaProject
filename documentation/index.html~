@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Mauricio Reyes">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://jqueryui.com/themes/base/jquery.ui.all.css" media="screen" />
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500' rel='stylesheet' type='text/css'>
+        <title>Documentation</title>
+    </head>
+    <body>
+        <img src="../img/doc.gif" alt="coming soon" />
+        Coming soon...
+    </body>
+</html>

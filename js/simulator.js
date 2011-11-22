@@ -19,15 +19,19 @@ window.onload = function () {
     var ant = new Ant(world);
     ant.spawn();
     
-    var btn = $("#run"),
-        cd = $("#code");
-    
-    btn.click(function () {
+    $("#run").click(function () {
         try {
-            eval(cd.val());
+            eval($("#code").val());
         } catch (e) {
             alert(e.message || e);
         }
+    });
+    
+    $("#ex1").click(function () {
+        $("#code").load("ex1.js")
+    });
+    $("#ex2").click(function () {
+        $("#code").load("ex2.js")
     });
 };
 

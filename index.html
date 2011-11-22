@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-ES">
 <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
+        <meta name="author" content="Mauricio Reyes">
         <title>Playground</title>
         <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
         <!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script-->
         <script src="js/raphael-min.js"></script>
@@ -16,10 +18,14 @@
 <body screen_capture_injected="true">
     <h1>Playground</h1>
     
-    <div id="canvas">
+    <div id="canvas" class="padding">
     </div>
     
     <div id="editor">
+        <div class="menu"><ul>
+            <li><a id="ex1" href="#ex1">Example 1</a></li>
+            <li><a id="ex2" href="#ex2">Example 2</a></li>
+        </ul></div>
         <textarea id="code">SPEED = 150;
 
 world.turn = function () {
@@ -40,6 +46,11 @@ world.start();
 </textarea>
         <button id="run" type="button">Run</button>
     </div>
-    
+<div class="menu padding">
+    <ul>
+        <li><a href="http://jsfiddle.net/individuo7/nu78Z/" target="_BLANK">Show in jsFiddle</a></li>
+        <li><a href="documentation" target="_BLANK">Documentation</a></li>
+    </ul>
+</div>
 </body>
 </html>
