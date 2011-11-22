@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+h1 {
+    font-weight: 400;
+    height: 5%;
+}
+#canvas {
+    height: 480px;
+    margin-left: 100px;
+    float: left;
+    width: 640px;
+}
+#editor {
+    margin-left:10px;
+    float:left;
+    width: auto;
+}
+#code {
+    font-family: Consolas, Monaco, "Lucida Console", monospace;
+    height: 400px;
+    margin: 10px;
+    padding: 0;
+    width: 90%;
+}
+#run {
+    font-size: 2em;
+}
