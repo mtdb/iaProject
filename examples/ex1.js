@@ -6,6 +6,8 @@
 
 SPEED = 150;
 
+world.stop();
+
 world.turn = function () {
     r = random(4);
     if (r == 0) dir = 'n';

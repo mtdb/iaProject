@@ -27,11 +27,8 @@ window.onload = function () {
         }
     });
     
-    $("#ex1").click(function () {
-        $("#code").load("ex1.js")
-    });
-    $("#ex2").click(function () {
-        $("#code").load("ex2.js")
+    $(".ex").click(function () {
+        $("#code").load("examples/ex"+$(this).data("id")+".js")
     });
 };
 

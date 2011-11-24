@@ -6,6 +6,8 @@
  
 SPEED = 150;
 
+world.stop();
+
 world.turn = function () {
     disp("Antes de moverme");
     disp(world);

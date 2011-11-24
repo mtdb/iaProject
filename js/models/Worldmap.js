@@ -13,14 +13,22 @@ var dictionary = {
     };
     
 function Worldmap(board) {
-    this.ground = [];
+    this.raw = [];
+    this.ground = function (x,y) {
+        try {
+            return this.raw[x][y];  
+        }
+        catch (e){
+            return -1
+        }
+    };
     this.board = board;
     this.turn = function () {}
-    this.look = function (x,y) {return dictionary[this.ground[x][y]]};
-    this.lenX = function (x,y) {return this.ground.length};
+    this.look = function (x,y) {return dictionary[this.ground(x,y)]};
+    this.lenX = function (x,y) {return this.raw.length};
     this.lenY = function (x,y) {
         try {
-            return this.ground[0].length
+            return this.raw[0].length
         } catch (e) {
             return 0;
         };
@@ -36,17 +44,17 @@ function Worldmap(board) {
                 else
                     row[j] = 0;
             }
-            this.ground[i] = row;
+            this.raw[i] = row;
         }
         this.board.drawing(this);
     };
     this.populate = function (x) {
         for (i=0; i<this.lenX(); i++){
             for (j=0; j<this.lenY(); j++){
-                if (this.ground[i][j] == 0){
+                if (this.ground(i,j) == 0){
                     aux = random(x);
                     if (aux == 0){
-                        this.ground[i][j] = 4;
+                        this.raw[i][j] = 4;
                         this.board.fill(i,j,"food");
                     }
                 }
@@ -54,8 +62,8 @@ function Worldmap(board) {
         }
     };
     this.add = function (ant,x,y) {
-        if (this.ground[x][y] == 0) {
-            this.ground[x][y] = 5;
+        if (this.ground(x,y) == 0) {
+            this.raw[x][y] = 5;
             this.board.fill(x,y,ant);
             ant.x = x;
             ant.y = y;
@@ -65,35 +73,35 @@ function Worldmap(board) {
     };
     this.wipe = function(x,y) {
         if (this.look(x,y) == "food"){
-            this.ground[x][y] = 0;
+            this.raw[x][y] = 0;
             this.board.wipe(x,y);
         }
     };
     this.move = function(object,direction) {
         update = false;
         if (is(object) == "Ant"){
-            if (direction == 'e' && this.ground[object.x+1][object.y] == 0) {
-                this.ground[object.x][object.y] = 0;
+            if (direction == 'e' && this.ground(object.x+1,object.y) == 0) {
+                this.raw[object.x][object.y] = 0;
                 object.x+=1;
                 update = true;
             }
-            else if (direction == 'w' && this.ground[object.x-1][object.y] == 0){
-                this.ground[object.x][object.y] = 0;
+            else if (direction == 'w' && this.ground(object.x-1,object.y) == 0){
+                this.raw[object.x][object.y] = 0;
                 object.x-=1;
                 update = true;
             }
-            else if (direction == 'n' && this.ground[object.x][object.y-1] == 0){
-                this.ground[object.x][object.y] = 0;
+            else if (direction == 'n' && this.ground(object.x,object.y-1) == 0){
+                this.raw[object.x][object.y] = 0;
                 object.y-=1;
                 update = true;
             }
-            else if (direction == 's' && this.ground[object.x][object.y+1] == 0){
-                this.ground[object.x][object.y] = 0;
+            else if (direction == 's' && this.ground(object.x,object.y+1) == 0){
+                this.raw[object.x][object.y] = 0;
                 object.y+=1;
                 update = true;
             }
             if (update) {
-                this.ground[object.x][object.y] = 5;
+                this.raw[object.x][object.y] = 5;
                 this.board.move(object,object.x,object.y);
                 return true;
             }
@@ -102,6 +110,14 @@ function Worldmap(board) {
     };
     this.start = function () {
         __world__ = this;
-        setInterval("__world__.turn()",SPEED);
+        __life__ = setInterval("__world__.turn()",SPEED);
+    };
+    this.stop = function () {
+        try {
+            clearInterval(__life__);
+        } catch (e) {
+            return 1;
+        };
+        
     };
 }
