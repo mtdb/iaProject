@@ -14,7 +14,7 @@ function disp(object){
         for (i=0; i<lenY; i++){
             row = []
             for (j=0; j<lenX; j++){
-                row.push(object.ground[j][i]);
+                row.push(object.ground(j,i));
             }
             console.log(row);
         }
