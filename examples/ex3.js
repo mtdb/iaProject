@@ -1,42 +1,22 @@
 /*
- * Ejemplo donde se crea un mundo con
- * pocos obstaculos y dos hormigas
- * compitiendo por alimento
+ * Ejemplo que ejecuta una instrucción
+ * a la vez y muestra información de la
+ * corrida en la consola javascript
  */
  
 SPEED = 150;
 
 world.stop();
-world.generate(32,24,50);
-world.populate(6);
-
-var ant1 = new Ant(world);
-ant1.spawn();
-
-var ant2 = new Ant(world);
-ant2.spawn();
 
 world.turn = function () {
-    dir = randomMove();
-    if (ant1.look(dir) == "food") {
-        ant1.eat(dir);
-        ant1.move(dir);
-    }
-    else ant1.move(dir);
-    dir = randomMove();
-    if (ant2.look(dir) == "food") {
-        ant2.eat(dir);
-        ant2.move(dir);
-    }
-    else ant2.move(dir);
+    disp("Antes de moverme");
+    disp(world);
+    ant.move('n');
+    disp("Despues de moverme");
+    disp(world);
+    disp("Mostrar el objeto Ant");
+    disp(ant);
 }
 
-world.start();
+world.turn();
 
-function randomMove() {
-    r = random(4);
-    if (r == 0) return 'n';
-    if (r == 1) return 's';
-    if (r == 2) return 'e';
-    if (r == 3) return 'w';
-}

@@ -54,16 +54,20 @@ function Worldmap(board) {
                 if (this.ground(i,j) == 0){
                     aux = random(x);
                     if (aux == 0){
-                        this.raw[i][j] = 4;
+                        this.actualize(i,j,4);
                         this.board.fill(i,j,"food");
                     }
                 }
             }
         }
     };
+    this.actualize = function (x,y,value) {
+        this.raw[x][y] = value;
+    };
     this.add = function (ant,x,y) {
+        // bug: eliminate old instance of ant...
         if (this.ground(x,y) == 0) {
-            this.raw[x][y] = 5;
+            this.actualize(x,y,5);
             this.board.fill(x,y,ant);
             ant.x = x;
             ant.y = y;
@@ -71,53 +75,90 @@ function Worldmap(board) {
         }
         return false;
     };
-    this.wipe = function(x,y) {
-        if (this.look(x,y) == "food"){
-            this.raw[x][y] = 0;
-            this.board.wipe(x,y);
+    this.interact = function(x,y,action) {
+        initialState = this.ground(x,y);
+        finalState = interact(initialState,action);
+        if (initialState != finalState){
+            this.actualize(x,y,finalState)
+            this.board.actualize(x,y,dictionary[finalState]);
         }
     };
     this.move = function(object,direction) {
         update = false;
         if (is(object) == "Ant"){
             if (direction == 'e' && this.ground(object.x+1,object.y) == 0) {
-                this.raw[object.x][object.y] = 0;
+                this.actualize(object.x,object.y,0);
                 object.x+=1;
                 update = true;
             }
             else if (direction == 'w' && this.ground(object.x-1,object.y) == 0){
-                this.raw[object.x][object.y] = 0;
+                this.actualize(object.x,object.y,0);
                 object.x-=1;
                 update = true;
             }
             else if (direction == 'n' && this.ground(object.x,object.y-1) == 0){
-                this.raw[object.x][object.y] = 0;
+                this.actualize(object.x,object.y,0);
                 object.y-=1;
                 update = true;
             }
             else if (direction == 's' && this.ground(object.x,object.y+1) == 0){
-                this.raw[object.x][object.y] = 0;
+                this.actualize(object.x,object.y,0);
                 object.y+=1;
                 update = true;
             }
             if (update) {
-                this.raw[object.x][object.y] = 5;
+                this.actualize(object.x,object.y,5);
                 this.board.move(object,object.x,object.y);
                 return true;
             }
         }
         else return false;
     };
+    this.running = false;
     this.start = function () {
         __world__ = this;
-        __life__ = setInterval("__world__.turn()",SPEED);
+        if (!this.running){
+            __life__ = setInterval("__world__.turn()",SPEED);
+            this.running = true;
+        }
     };
     this.stop = function () {
         try {
             clearInterval(__life__);
+            this.running = false;
         } catch (e) {
             return 1;
         };
         
     };
 }
+
+/*
+ * World interact rules:
+ *  ________________________________
+ * |        | 0 | 1 | 2 | 3 | 4 | 5 |
+ * | eat    | 0 | 1 | 2 | 3 | 0 | 5 |
+ * | dig    | 0 | 0 | 1 | 2 | 4 | 5 |
+ * |________________________________|
+ * 
+ * knowing that:
+ *      0 is empty,
+ *      1 is groundA,
+ *      2 is groundB,
+ *      3 is groundC,
+ *      4 is food,
+ *      5 is ant
+ */
+ 
+ function interact(value, action) {
+    switch(action){
+        case("eat"):
+            if (value == 4) return 0;
+            break;
+        case("dig"):
+            if (value > 0 && value < 4) return value-1
+            break;
+    }
+    return value;
+ }
+ 

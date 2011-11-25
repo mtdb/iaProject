@@ -1,15 +1,22 @@
 body {
+    font-family: Ubuntu, Verdana;
     margin: 0;
     padding: 0;
     text-align: center;
+    background-color: #eee;
 }
 h1 {
     font-weight: 400;
     height: 5%;
 }
+footer {
+    width:100%;
+    float:left;
+    text-align:left;
+    margin: 5px 0;
+}
 #canvas {
     height: 480px;
-    
     float: left;
     width: 640px;
 }
@@ -28,13 +35,13 @@ h1 {
 #run {
     font-size: 2em;
 }
+#lang-menu {
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
 .padding{
     padding-left: 90px;
-}
-.menu {
-    width:100%;
-    float:left;
-    text-align:left;
 }
 
 .menu ul {

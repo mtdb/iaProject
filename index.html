@@ -7,26 +7,34 @@
         <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
         <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-        <!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script-->
         <script src="js/raphael-min.js"></script>
         <script src="js/utils.js"></script>
+        <script src="js/dictionary.js"></script>
         <script src="js/models/Worldmap.js"></script>
         <script src="js/models/Ant.js"></script>
         <script src="js/models/Board.js"></script>
         <script src="js/simulator.js"></script>
 </head>
 <body screen_capture_injected="true">
-    <h1>Playground</h1>
-    
+    <div id="lang-menu" class="menu">
+        <ul>
+            <li><a data-lang="es" href="#es">Es</a></li>
+            <li><a data-lang="en" href="#en">En</a></li>
+        </ul>
+    </div>
+    <h1 class="resource" data-key="playground">Playgr3ound</h1>
     <div id="canvas" class="padding">
     </div>
     
     <div id="editor">
-        <div class="menu"><ul>
-            <li><a class="ex" data-id="1" href="#ex1">Example 1</a></li>
-            <li><a class="ex" data-id="2" href="#ex2">Example 2</a></li>
-            <li><a class="ex" data-id="3" href="#ex2">Example 3</a></li>
-        </ul></div>
+        <div class="menu">
+            <ul>
+                <li><a class="ex resource" data-id="1" data-key="example1" href="#ex1">Example 1</a></li>
+                <li><a class="ex resource" data-id="2" data-key="example2" href="#ex2">Example 2</a></li>
+                <li><a class="ex resource" data-id="3" data-key="example3" href="#ex2">Example 3</a></li>
+                <li><a class="ex resource" data-id="4" data-key="example4" href="#ex2">Example 4</a></li>
+            </ul>
+        </div>
         <textarea id="code">SPEED = 150;
 
 world.turn = function () {
@@ -45,13 +53,13 @@ world.turn = function () {
 world.start();
 
 </textarea>
-        <button id="run" type="button">Run</button>
+        <button class="resource" data-key="run" id="run" type="button">Run</button>
     </div>
-<div class="menu padding">
+<footer class="menu padding">
     <ul>
-        <li><a href="http://jsfiddle.net/individuo7/nu78Z/" target="_BLANK">Show in jsFiddle</a></li>
-        <li><a href="documentation" target="_BLANK">Documentation</a></li>
+        <li><a class="resource" data-key="showin" href="http://jsfiddle.net/individuo7/nu78Z/" target="_BLANK">Show in jsFiddle</a></li>
+        <li><a class="resource" data-key="documentation" href="documentation" target="_BLANK">Documentation</a></li>
     </ul>
-</div>
+</footer>
 </body>
 </html>

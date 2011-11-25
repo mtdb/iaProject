@@ -15,25 +15,6 @@ function Ant(world) {
             randY = random(this.world.lenY());
             goin = this.world.add(this,randX,randY);
         }
-    };
-    this.move = function (direction){
-        this.world.move(this,direction);
-    }
-    this.eat = function (direction){
-        switch(direction){
-            case 'n':
-                this.world.wipe(this.x,this.y-1);
-                break;
-            case 's':
-                this.world.wipe(this.x,this.y+1);
-                break;
-            case 'e':
-                this.world.wipe(this.x+1,this.y);
-                break;
-            case 'w':
-                this.world.wipe(this.x-1,this.y);
-                break;
-        }
     }
     this.look = function (direction){
         switch (direction){
@@ -48,6 +29,41 @@ function Ant(world) {
                 break;
             case 'w':
                 return this.world.look(this.x-1,this.y);
+                break;
+        }
+    }
+    this.move = function (direction){
+        this.world.move(this,direction);
+    }
+    this.eat = function (direction){
+        switch(direction){
+            case 'n':
+                this.world.interact(this.x,this.y-1,"eat");
+                break;
+            case 's':
+                this.world.interact(this.x,this.y+1,"eat");
+                break;
+            case 'e':
+                this.world.interact(this.x+1,this.y,"eat");
+                break;
+            case 'w':
+                this.world.interact(this.x-1,this.y,"eat");
+                break;
+        }
+    }
+    this.dig = function (direction){
+        switch(direction){
+            case 'n':
+                this.world.interact(this.x,this.y-1,"dig");
+                break;
+            case 's':
+                this.world.interact(this.x,this.y+1,"dig");
+                break;
+            case 'e':
+                this.world.interact(this.x+1,this.y,"dig");
+                break;
+            case 'w':
+                this.world.interact(this.x-1,this.y,"dig");
                 break;
         }
     }

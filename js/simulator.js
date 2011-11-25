@@ -13,9 +13,6 @@ window.onload = function () {
     world.generate(32,24);
     world.populate(12);
     
-    //world.generate(32,24,50);
-    //world.populate(2);
-    
     var ant = new Ant(world);
     ant.spawn();
     
@@ -30,5 +27,18 @@ window.onload = function () {
     $(".ex").click(function () {
         $("#code").load("examples/ex"+$(this).data("id")+".js")
     });
+    
+    $("#lang-menu li a").click(function () {
+        localStorage["lang"] = $(this).data("lang");
+        culture();
+    });
+    
+    culture();
 };
+
+function culture() {
+    $(".resource").each(function () {
+        $(this).text(eval("__dic__."+$(this).data("key")+"['"+localStorage["lang"]+"']"));
+    });
+}
 
