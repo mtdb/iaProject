@@ -10,7 +10,7 @@ SPEED = 150;
 
 world.stop();
 
-dictionary = {0:'n',1:'s',2:'e',4:'w'}
+dictionary = {0:'n',1:'s',2:'e',3:'w'}
 world.turn = function () {
     dir = dictionary[random(4)];
     if (ant.look(dir) == "food") {
