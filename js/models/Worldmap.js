@@ -3,7 +3,7 @@
  * using models/Board.js
  */
  
-var dictionary = {
+var __dictionary__ = {
         0:"empty",
         1:"groundA",
         2:"groundB",
@@ -24,7 +24,7 @@ function Worldmap(board) {
     };
     this.board = board;
     this.turn = function () {}
-    this.look = function (x,y) {return dictionary[this.ground(x,y)]};
+    this.look = function (x,y) {return __dictionary__[this.ground(x,y)]};
     this.lenX = function (x,y) {return this.raw.length};
     this.lenY = function (x,y) {
         try {
@@ -80,7 +80,7 @@ function Worldmap(board) {
         finalState = interact(initialState,action);
         if (initialState != finalState){
             this.actualize(x,y,finalState)
-            this.board.actualize(x,y,dictionary[finalState]);
+            this.board.actualize(x,y,__dictionary__[finalState]);
         }
     };
     this.move = function(object,direction) {

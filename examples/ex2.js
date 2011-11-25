@@ -10,15 +10,17 @@ SPEED = 150;
 
 world.stop();
 
+dictionary = {0:'n',1:'s',2:'e',4:'w'}
 world.turn = function () {
-    r = random(4);
-    if (r == 0) dir = 'n';
-    if (r == 1) dir = 's';
-    if (r == 2) dir = 'e';
-    if (r == 3) dir = 'w';
+    dir = dictionary[random(4)];
     if (ant.look(dir) == "food") {
         ant.eat(dir);
         ant.move(dir);
+    }
+    else if (ant.look(dir) == "groundA" ||
+             ant.look(dir) == "groundB" ||
+             ant.look(dir) == "groundC") {
+        ant.dig(dir);
     }
     else ant.move(dir);
 }
